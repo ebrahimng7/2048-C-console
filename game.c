@@ -25,12 +25,12 @@ int saving_array(int array[n][n], int save_array[n][n]);
 int check_change (int array[n][n] , int save_array[n][n]);
 int have_zero(int array[n][n]);
 
-//تابع بازی اصلی
+// main game function
 int main()
 {
     srand(time(0));
-    int array[n][n]; //صفحه بازی
-    int save_array[n][n]; //تابعی برای ذخیره کردن صفحه بازی
+    int array[n][n]; // gameboard
+    int save_array[n][n]; // saves gameboard
     initializeBoard(array);
     printBoard(array);
     while (1)
@@ -57,7 +57,7 @@ int main()
     return 0;
 }
 
-// تابع چاپ کننده ی محیط بازی
+// prints gameboard
 int printBoard(int array[n][n])
 {
     printf("\n*************************************\nYour Score: %d\n-----------------------\n", calculateScore(array));
@@ -83,7 +83,7 @@ int printBoard(int array[n][n])
     }
 }
 
-// تابع محاسبه امتیاز
+// calculates score
 int calculateScore(int array[n][n])
 {
     int score = 0;
@@ -97,12 +97,12 @@ int calculateScore(int array[n][n])
     return score;
 }
 
-// تابع تولیدکننده ی مقدار تصادفی
+// random number generator
 void addRandom(int array[n][n])
 {
     while (have_zero(array) == 1)
     {
-        int row = rand() % 4, coulmn = rand() % 4; // انتخاب ستون و ردیف ارایه
+        int row = rand() % 4, coulmn = rand() % 4; // selecting the column and the row
         if (array[row][coulmn] == 0)
         {
             int x = rand() % 2;
@@ -119,53 +119,53 @@ void addRandom(int array[n][n])
     }
 }
 
-// تابع مقداردهی اولیه بازی
+// initialize the board for the first time
 void initializeBoard(int array[n][n])
 {
     for (int row = 0; row < n; row++)
     {
         for (int coulmn = 0; coulmn < n; coulmn++)
         {
-            array[row][coulmn] = 0; // تمام ارایه ها را صفر میکنیم
+            array[row][coulmn] = 0; // initialze all the array members to zero
         }
     }
-    // به دو تا از ارایه ها مقدار میدهیم
+    // initialize two array members
     addRandom(array);
     addRandom(array);
 }
 
-//تابع گرفتن ورودی و انجام عملیات ها
+// gets input and do the game
 int get_work(int array[n][n] , int save_array[n][n]){
-    char work = getche(); // گرفتن ورودی از کاربر
+    char work = getche(); // getting input from user
         switch (work)
         {
-        case 'L': // رفتن به چپ
+        case 'L': // moving Left
             moveLeft(array , save_array);
             break;
-        case 'R': // رفتن به راست
+        case 'R': // moving Right
             moveRight(array , save_array);
             break;
-        case 'U': // رفتن به بالا
+        case 'U': // moving Up
             moveUp(array , save_array);
             break;
-        case 'D': // رفتن به پایین
+        case 'D': // moving Down
             moveDown(array , save_array);
             break;
-        case 'B': // به مرحله قبلی برگشتن
+        case 'B': // getting back
             back(save_array);
             break;
-        case 'N': // بازی جدید
+        case 'N': // load a new game
             new_game();
             return 0;
-        case 'Q': //پایان بازی
+        case 'Q': // ends game
             return 0;
-        default: //ورودی های تعریف نشده
+        default: // invalid input
             printf("\ninvalid move");
             printBoard(array);
         }
 }
 
-// تابع حرکت کردن صفحه بازی به سمت چپ
+// move left func
 int moveLefting(int array[n][n])
 {
     for (int row = 0; row < n; row++)
