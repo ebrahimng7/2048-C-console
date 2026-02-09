@@ -203,7 +203,7 @@ int moveLefting(int array[n][n])
     }
 }
 
-// تابع پیدا کردن تارگت برای کمک به تابع حرکت به چپ
+// move left helper to find the target array member 
 int FindTarget(int array[n][n], int coulmn, int row, int stop)
 {
     if (coulmn == 0)
@@ -234,7 +234,7 @@ int FindTarget(int array[n][n], int coulmn, int row, int stop)
     }
 }
 
-//مشخص کردن برد
+//win status
 int win_or_not(int array[n][n])
 {
     for (int row = 0; row < n; row++)
@@ -243,14 +243,14 @@ int win_or_not(int array[n][n])
         {
             if (array[row][coulmn] == 2048)
             {
-                return 1; //بردن
+                return 1; // wins
             }
         }
     }
-    return 0; //هنوز نبردن
+    return 0; // not still a winner
 }
 
-//مشخص کردن باخت
+// lose status
 int lose_or_not(int array[n][n])
 {
     for (int i = 0; i < n; i++)
