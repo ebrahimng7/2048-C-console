@@ -177,11 +177,9 @@ int moveLefting(int array[n][n])
             {
                 continue;
             }
-            // اگر مقدار ارایه برابر با صفر بود کاری نمیکنیم
             if (array[row][coulmn] != 0)
             {
                 int target = FindTarget(array, coulmn, row, stop);
-                // اگر تارگت با کالمن مساوی بود کاری نمیکنیم
                 if (target != coulmn)
                 {
                     if (array[row][target] == 0)
@@ -273,7 +271,7 @@ int lose_or_not(int array[n][n])
     return 1;
 }
 
-//چرخاندن صفحه بازی
+//board game rotating
 void rotate_array(int array[n][n])
 {
     int tmp;
@@ -290,7 +288,7 @@ void rotate_array(int array[n][n])
     }
 }
 
-//حرکت به چپ
+// moving left
 int moveLeft(int array[n][n] , int save_array[n][n])
 {
     saving_array(array, save_array);
@@ -305,7 +303,7 @@ int moveLeft(int array[n][n] , int save_array[n][n])
     }
 }
 
-//حرکت به راست
+// moving right
 int moveRight(int array[n][n] , int save_array[n][n])
 {
     saving_array(array, save_array);
@@ -324,7 +322,7 @@ int moveRight(int array[n][n] , int save_array[n][n])
     }
 }
 
-//حرکت به بالا
+// moving up
 int moveUp(int array[n][n] , int save_array[n][n])
 {
     saving_array(array, save_array);
@@ -343,7 +341,7 @@ int moveUp(int array[n][n] , int save_array[n][n])
     }
 }
 
-//حرکت به پایین
+// moving down
 int moveDown(int array[n][n] , int save_array[n][n])
 {
     saving_array(array, save_array);
@@ -362,13 +360,13 @@ int moveDown(int array[n][n] , int save_array[n][n])
     }
 }
 
-//شروع بازی جدید
+// starting new game
 int new_game()
 {
     main();
 }
 
-//ذخیره کردن صفحه بازی
+// saving board game
 int saving_array(int array[n][n], int save_array[n][n])
 {   
         if (check_change ( array , save_array) ==1){
@@ -383,13 +381,13 @@ int saving_array(int array[n][n], int save_array[n][n])
     
 }
 
-//برگشنن به مرحله قبلی
+// back to the old stage
 int back(int save_array[n][n])
 {
     printBoard(save_array);
 }
 
-//تابعی که چک کند ترتیه تغیر کرده است یا نه
+// check if board changed
 int check_change (int array[n][n] , int save_array[n][n]){
     int number_of_equals = 0 ;
     for (int row = 0; row < n; row++)
@@ -412,7 +410,6 @@ int check_change (int array[n][n] , int save_array[n][n]){
     }
 }
 
-//تابعی که چک کند ارایه ی صفر وجود دارد یا نه
 int have_zero(int array[n][n]){
     for (int row = 0; row < n; row++)
     {
